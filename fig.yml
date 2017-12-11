@@ -1,0 +1,20 @@
+version: "3"
+services:
+  mediawiki:
+    image: 'mediawiki'
+    ports:
+      - "8080:80"
+    links:
+      - database
+    volumes:
+      - /var/www/html/images
+      - /home/lijing/code/docker/wikimedia-docker/mnt:/mnt
+
+  database:
+    image: "mysql"
+    restart: always
+    environment:
+    # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
+      MYSQL_DATABASE: my_wiki
+      MYSQL_ROOT_PASSWORD: root
+
