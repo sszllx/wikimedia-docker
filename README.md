@@ -6,23 +6,9 @@ component including:
 - mysql
 
 
-## deps
-* [docker](https://www.docker.com/)
-* [fig](http://www.fig.sh/)
-
 ## deploy
 
 ~~~bash
-$ git clone https://github.com/bopjiang/wikimedia-docker.git
-$ cd wikimedia-docker
-$ fig up -d
+$ sudo curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose ; sudo chmod +x /usr/local/bin/docker-compose
+$ docker-compose -f fig.yml up
 ~~~
-
-## note
-- Mysql password is set in fig.yaml, through MYSQL_ROOT_PASSWORD environment variable
-- when setup wikimedia, mysql host should be set as "database"
-
-## TODO
-- add memcached
-
-
