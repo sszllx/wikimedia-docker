@@ -8,7 +8,8 @@ services:
       - database
     volumes:
       - /var/www/html/images
-      - /home/lijing/code/docker/wikimedia-docker/mnt:/mnt
+      # local/docker
+      - /mnt:/var/www/html
 
   database:
     image: "mysql"
@@ -17,4 +18,3 @@ services:
     # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
       MYSQL_DATABASE: my_wiki
       MYSQL_ROOT_PASSWORD: root
-
