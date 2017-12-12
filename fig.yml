@@ -1,7 +1,7 @@
 version: "3"
 services:
   mediawiki:
-    image: 'mediawiki'
+    image: wikimedia/mediawiki:1.30.0-wmf4
     ports:
       - "8080:80"
     links:
@@ -9,7 +9,8 @@ services:
     volumes:
       - /var/www/html/images
       # local/docker
-      - /mnt:/var/www/html
+      - /mnt:/mnt
+      - /home/lijing/wiki:/var/www/html
 
   database:
     image: "mysql"
