@@ -1,7 +1,17 @@
 version: "3"
 services:
+  database:
+    image: "mysql"
+    volumes:
+       - /home/lijing/wiki/db_data:/var/lib/mysql
+    restart: always
+    environment:
+    # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
+      MYSQL_DATABASE: my_wiki
+      MYSQL_ROOT_PASSWORD: root
+
   mediawiki:
-    image: wikimedia/mediawiki:1.30.0-wmf4
+    image: mediawiki
     ports:
       - "8080:80"
     links:
@@ -11,11 +21,7 @@ services:
       # local/docker
       - /mnt:/mnt
       - /home/lijing/wiki:/var/www/html
-
-  database:
-    image: "mysql"
-    restart: always
     environment:
-    # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
-      MYSQL_DATABASE: my_wiki
-      MYSQL_ROOT_PASSWORD: root
+      MEDIAWIKI_DB_HOST: database
+      MEDIAWIKI_DB_NAME: my_wiki
+      MEDIAWIKI_DB_PASSWORD: root
